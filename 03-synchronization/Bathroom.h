@@ -7,9 +7,11 @@ private:
     int count;
 
 public:
-    Bathroom();
+    Bathroom(int);
     int getStatus();
     int getCount();
+    void increment();
+    void decrement();
 };
 
 #endif
