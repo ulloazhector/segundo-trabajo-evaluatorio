@@ -5,6 +5,10 @@ Bathroom::Bathroom(int status) {
     this->count = 0;
 }
 
+void Bathroom::setStatus(int status){
+    this->status = status;
+}
+
 int Bathroom::getStatus() {
     return this->status;
 }

@@ -8,6 +8,7 @@ private:
 
 public:
     Bathroom(int);
+    void setStatus(int);
     int getStatus();
     int getCount();
     void increment();
