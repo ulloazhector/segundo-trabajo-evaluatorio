@@ -28,8 +28,8 @@ mutex mtxQueue, mtxBathroom;
 */
 
 // Styled strings
-string redString(string s) { return "\033[1;32m" + s + "\033[0m "; }
-string greenString(string s) { return "\033[1;31m" + s + "\033[0m "; }
+string greenString(string s) { return "\033[1;32m" + s + "\033[0m "; }
+string redString(string s) { return "\033[1;31m" + s + "\033[0m "; }
 string boldString(int s) { return "\033[1m" + to_string(s) + "\033[0m "; }
 
 // Entrada al baño
