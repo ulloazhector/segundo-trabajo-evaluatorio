@@ -11,7 +11,7 @@ struct sockaddr_in Servidor::crear() {
     struct sockaddr_in servaddr;
     this->sockfd = socket(AF_INET, SOCK_STREAM, 0);
     if (this->sockfd == -1)
-        fprintf(stderr, "[SERVER-error]: socket creation failed. %d: %s \n", errno, strerror(errno));
+        fprintf(stderr, "\033[1;31m[SERVER-error]: socket creation failed. %d: %s \033[0m\n", errno, strerror(errno));
     else
         cout << "\033[1;32m[SERVER]: Socket successfully created\033[0m" << endl;
 
@@ -29,7 +29,7 @@ struct sockaddr_in Servidor::crear() {
 int Servidor::enlazar(struct sockaddr_in servaddr) {
 
     if ((bind(this->sockfd, (struct sockaddr *)&servaddr, sizeof(servaddr))) != 0) {
-        fprintf(stderr, "[SERVER-error]: Socket bind failed. %d: %s \n", errno, strerror(errno));
+        fprintf(stderr, "\033[1;31m[SERVER-error]: Socket bind failed. %d: %s \033[0m\n", errno, strerror(errno));
         return -1;
     }
     cout << "\033[1;32m[SERVER]: Socket successfully binded\033[0m" << endl;
@@ -39,7 +39,7 @@ int Servidor::enlazar(struct sockaddr_in servaddr) {
 int Servidor::escuchar() {
 
     if ((listen(this->sockfd, this->usuarios)) != 0) {
-        fprintf(stderr, "[SERVER-error]: Socket listen failed. %d: %s \n", errno, strerror(errno));
+        fprintf(stderr, "\033[1;31m[SERVER-error]: Socket listen failed. %d: %s \033[0m\n", errno, strerror(errno));
         return -1;
     }
     cout << "\033[1;36m[SERVER]: Listening on SERV_PORT " << this->port << endl
@@ -60,7 +60,7 @@ int Servidor::aceptarInteractuar() {
     while (1) {
         this->connfd = accept(this->sockfd, (struct sockaddr *)&client, &(this->len));
         if (this->connfd < 0) {
-            fprintf(stderr, "[SERVER-error]: Connection not accepted. %d: %s \n", errno, strerror(errno));
+            fprintf(stderr, "\033[1;31m[SERVER-error]: Connection not accepted. %d: %s \033[0m\n", errno, strerror(errno));
             return -1;
         } else {
             generarPassword();
@@ -68,7 +68,7 @@ int Servidor::aceptarInteractuar() {
             while (1) {
                 this->len_rx = read(this->connfd, this->buff_rx, sizeof(this->buff_rx));
                 if (this->len_rx == -1) {
-                    fprintf(stderr, "[SERVER-error]: Connfd cannot be read. %d: %s \n", errno, strerror(errno));
+                    fprintf(stderr, "\033[1;31m[SERVER-error]: Connfd cannot be read. %d: %s \033[0m\n", errno, strerror(errno));
                 } else if (this->len_rx == 0) {
                     cout << "Password generado: \033[1;46m" << this->buff_tx << "\033[0m" << endl;
                     cout << "\033[1m[SERVER]:\033[0m Client socket closed" << endl
